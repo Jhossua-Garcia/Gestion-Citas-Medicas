@@ -1,0 +1,21 @@
+<h2>Agendar Nueva Cita</h2>
+<form method="POST">
+    <label>Paciente:</label>
+    <select name="paciente_id" required>
+        {% for paciente in pacientes %}
+        <option value="{{ paciente.id_paciente }}">{{ paciente.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Doctor:</label>
+    <select name="doctor_id" required>
+        {% for doctor in doctores %}
+        <option value="{{ doctor.id_doctor }}">{{ doctor.nombre }} ({{ doctor.especialidad }})</option>
+        {% endfor %}
+    </select>
+
+    <label>Fecha y Hora:</label>
+    <input type="datetime-local" name="fecha_hora" required>
+
+    <button type="submit">Agendar</button>
+</form>

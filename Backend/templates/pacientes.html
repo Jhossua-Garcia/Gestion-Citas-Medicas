@@ -1,0 +1,7 @@
+<h2>Pacientes</h2>
+<a href="{{ url_for('nuevo_paciente') }}">Nuevo Paciente</a>
+<ul>
+    {% for paciente in pacientes %}
+    <li>{{ paciente.nombre }} - {{ paciente.contacto }}</li>
+    {% endfor %}
+</ul>
