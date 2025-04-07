@@ -1,7 +1,44 @@
-<h2>Pacientes</h2>
-<a href="{{ url_for('nuevo_paciente') }}">Nuevo Paciente</a>
-<ul>
-    {% for paciente in pacientes %}
-    <li>{{ paciente.nombre }} - {{ paciente.contacto }}</li>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestión de Pacientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='pacientes.css') }}">
+    <!-- Iconos opcionales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-user-injured"></i> Registro de Pacientes</h2>
+        <a href="{{ url_for('nuevo_paciente') }}" class="btn-nuevo">
+            <i class="fas fa-plus-circle"></i> Nuevo Paciente
+        </a>
+        
+        <table class="lista-pacientes">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-signature"></i> Nombre</th>
+                    <th><i class="fas fa-birthday-cake"></i> Edad</th>
+                    <th><i class="fas fa-phone"></i> Teléfono</th>
+                    <th><i class="fas fa-map-marker-alt"></i> Dirección</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for paciente in pacientes %}
+                <tr>
+                    <td>{{ paciente.nombre }}</td>
+                    <td>
+                        {% if paciente.edad %}
+                            {{ paciente.edad }} años
+                        {% else %}
+                            <span class="dato-vacio">No especificado</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ paciente.telefono or '<span class="dato-vacio">Sin teléfono</span>'|safe }}</td>
+                    <td>{{ paciente.direccion or '<span class="dato-vacio">Sin dirección</span>'|safe }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

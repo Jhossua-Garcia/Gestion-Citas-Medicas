@@ -1,0 +1,43 @@
+/* Estilos para la tabla completa */
+.lista-pacientes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.lista-pacientes thead {
+    background-color: #3498db;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.lista-pacientes th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+}
+
+.lista-pacientes td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+.lista-pacientes tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.lista-pacientes tbody tr:hover {
+    background-color: #e3f2fd;
+}
+
+/* Estilo para datos vacíos */
+.dato-vacio {
+    color: #95a5a6;
+    font-style: italic;
+}
