@@ -2,8 +2,7 @@
 <html>
 <head>
     <title>Clínica Médica</title>
-</head>
-<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <h1>Bienvenido al Sistema de Citas</h1>
     <nav>
         <a href="{{ url_for('listar_pacientes') }}">Pacientes</a> |

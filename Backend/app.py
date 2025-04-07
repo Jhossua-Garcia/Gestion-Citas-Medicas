@@ -30,8 +30,9 @@ class Cita(db.Model):
 
 # Rutas
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
+
 
 @app.route('/pacientes')
 def listar_pacientes():
