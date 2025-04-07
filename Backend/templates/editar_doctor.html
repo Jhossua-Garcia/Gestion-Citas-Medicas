@@ -1,0 +1,12 @@
+<h2>Editar Doctor</h2>
+
+<form method="POST">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="{{ doctor.nombre }}" required>
+    
+    <label for="especialidad">Especialidad:</label>
+    <input type="text" id="especialidad" name="especialidad" value="{{ doctor.especialidad }}" required>
+    
+    <button type="submit">Guardar Cambios</button>
+    <a href="{{ url_for('listar_doctores') }}">Cancelar</a>
+</form>

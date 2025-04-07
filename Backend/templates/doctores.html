@@ -2,6 +2,11 @@
 <a href="{{ url_for('nuevo_doctor') }}">agregar doctor</a>
 <ul>
     {% for doctor in doctores %}
-    <li>{{ doctor.nombre }} - {{ doctor.especialidad }}</li>
+    <li>{{ doctor.nombre }} - {{ doctor.especialidad }}
+    <a href="{{ url_for('editar_doctor', id_doctor=doctor.id_doctor) }}">Editar</a>
+    
+    <form action="{{ url_for('eliminar_doctor', id_doctor=doctor.id_doctor) }}" method="POST" style="display: inline;">
+    <button type="submit">Eliminar</button>
+    </form>
     {% endfor %}
 </ul>

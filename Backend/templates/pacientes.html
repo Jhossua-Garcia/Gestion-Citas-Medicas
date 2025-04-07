@@ -2,6 +2,14 @@
 <a href="{{ url_for('nuevo_paciente') }}">Nuevo Paciente</a>
 <ul>
     {% for paciente in pacientes %}
-    <li>{{ paciente.nombre }} - {{ paciente.contacto }}</li>
+    <li>
+        {{ paciente.nombre }} - {{ paciente.contacto }}
+        <!-- Botón Editar (enlace a la página de edición) -->
+        <a href="{{ url_for('editar_paciente', id_paciente=paciente.id_paciente) }}">Editar</a>
+        <!-- Botón Eliminar (formulario POST) -->
+        <form action="{{ url_for('eliminar_paciente', id_paciente=paciente.id_paciente) }}" method="POST" style="display: inline;">
+            <button type="submit">Eliminar</button>
+        </form>
+    </li>
     {% endfor %}
 </ul>
