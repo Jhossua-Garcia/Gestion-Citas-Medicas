@@ -1,0 +1,7 @@
+<h2>Doctores</h2>
+<a href="{{ url_for('nuevo_doctor') }}">agregar doctor</a>
+<ul>
+    {% for doctor in doctores %}
+    <li>{{ doctor.nombre }} - {{ doctor.especialidad }}</li>
+    {% endfor %}
+</ul>

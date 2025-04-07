@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://Citas_Medicas:123@JHOSSUA/Citas_Medicas_T03?driver=ODBC+Driver+17+for+SQL+Server'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://Citas_Medicas:123@DESKTOP-VF5IOEU/Citas_Medicas_T03?driver=ODBC+Driver+17+for+SQL+Server'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -54,6 +54,18 @@ def nuevo_paciente():
 def listar_doctores():
     doctores = Doctor.query.all()
     return render_template('doctores.html', doctores=doctores)
+
+@app.route('/doctores/nuevo', methods=['GET', 'POST'])
+def nuevo_doctor():
+    if request.method == 'POST':
+        doctor = Doctor(
+            nombre=request.form['nombre'],
+            especialidad=request.form['especialidad']
+        )
+        db.session.add(doctor)
+        db.session.commit()
+        return redirect(url_for('listar_doctores'))
+    return render_template('nuevo_doctor.html')
 
 @app.route('/citas/nueva', methods=['GET', 'POST'])
 def nueva_cita():
