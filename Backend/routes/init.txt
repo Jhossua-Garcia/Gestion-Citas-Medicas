@@ -1,3 +1,0 @@
-Endpoints de la API 
-usando python
-si se cree necesario

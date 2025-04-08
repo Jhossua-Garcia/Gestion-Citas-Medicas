@@ -1,6 +1,6 @@
-create database Citas_Medicas_T03
+create database Citas_Medicas
 
-use Citas_Medicas_T03
+use Citas_Medicas
 
 
 CREATE TABLE Pacientes (
@@ -10,6 +10,12 @@ CREATE TABLE Pacientes (
     telefono NVARCHAR(20),
     direccion VARCHAR(255) NOT NULL
 );
+
+
+SELECT COLUMN_NAME, DATA_TYPE 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_NAME = 'Doctores'
+
 
 INSERT INTO Pacientes (nombre, edad, telefono, direccion) VALUES
 ('Juan Pérez', 30, '87654321', 'Calle 1'),

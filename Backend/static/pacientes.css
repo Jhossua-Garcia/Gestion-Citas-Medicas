@@ -1,43 +1,91 @@
-/* Estilos para la tabla completa */
-.lista-pacientes {
+/* Estilos específicos para pacientes */
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2, h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.form-container {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #e1e5eb;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-submit {
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.btn-submit:hover {
+    background: #2980b9;
+}
+
+.data-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.lista-pacientes thead {
-    background-color: #3498db;
+.data-table th {
+    background: #3498db;
     color: white;
-    position: sticky;
-    top: 0;
-}
-
-.lista-pacientes th {
-    padding: 15px;
+    padding: 12px;
     text-align: left;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 0.9em;
-    letter-spacing: 0.5px;
 }
 
-.lista-pacientes td {
-    padding: 12px 15px;
+.data-table td {
+    padding: 10px;
     border-bottom: 1px solid #e0e0e0;
-    vertical-align: top;
 }
 
-.lista-pacientes tbody tr:nth-child(even) {
-    background-color: #f8f9fa;
+.data-table tr:nth-child(even) {
+    background: #f8f9fa;
 }
 
-.lista-pacientes tbody tr:hover {
-    background-color: #e3f2fd;
+.data-table tr:hover {
+    background: #e3f2fd;
 }
 
-/* Estilo para datos vacíos */
-.dato-vacio {
+.empty-data {
     color: #95a5a6;
     font-style: italic;
+}
+
+.fas {
+    margin-right: 8px;
 }

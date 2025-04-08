@@ -1,2 +1,0 @@
-#subir Scrip de la base de datos
-#MSSQL

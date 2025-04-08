@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctores.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Gestión de Doctores</h2>
+        
+        <!-- Formulario integrado -->
+        <form method="POST" class="form-doctores">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="especialidad" placeholder="Especialidad" required>
+            <button type="submit">Guardar</button>
+        </form>
+
+        <!-- Listado -->
+        <table class="tabla-doctores">
+            {% for doctor in doctores %}
+            <tr>
+                <td>{{ doctor.nombre }}</td>
+                <td>{{ doctor.especialidad }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
