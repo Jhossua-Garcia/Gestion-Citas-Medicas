@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://Citas_Medicas:123@JHOSSUA/Citas_Medicas_T03?driver=ODBC+Driver+17+for+SQL+Server'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://Citas_Medicas:123@DESKTOP-04J47OV/Citas_Medicas?driver=ODBC+Driver+17+for+SQL+Server'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -68,6 +68,37 @@ def listar_pacientes():
     pacientes = Paciente.query.order_by(Paciente.nombre).all()
     return render_template('pacientes.html', pacientes=pacientes)
 
+@app.route('/pacientes/eliminar/<int:id_paciente>', methods=['POST'])
+def eliminar_paciente(id_paciente):
+    # Buscamos el paciente por ID
+    paciente = Paciente.query.get_or_404(id_paciente)
+    
+    try:
+        # Eliminamos el paciente de la base de datos
+        db.session.delete(paciente)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {str(e)}")
+    
+    return redirect(url_for('listar_pacientes'))
+
+@app.route('/pacientes/editar/<int:id_paciente>', methods=['GET', 'POST'])
+def editar_paciente(id_paciente):
+    paciente = Paciente.query.get_or_404(id_paciente)  # Busca el paciente o devuelve 404
+    
+    if request.method == 'POST':
+        # Actualiza los datos del paciente con el formulario enviado
+        paciente.nombre = request.form['nombre']
+        paciente.edad = request.form['edad']
+        paciente.telefono = request.form['telefono']
+        paciente.direccion = request.form['direccion']
+        db.session.commit()  # Guarda los cambios
+        return redirect(url_for('listar_pacientes'))  # Redirige a la lista
+    
+    
+    return render_template('editar_paciente.html', paciente=paciente)
+
 @app.route('/doctores', methods=['GET', 'POST'])
 def gestion_doctores():
     if request.method == 'POST':
@@ -75,8 +106,8 @@ def gestion_doctores():
             doctor = Doctor(
                 nombre=request.form['nombre'],
                 especialidad=request.form['especialidad'],
-                telefono=request.form.get('telefono', None),
-                horario=request.form.get('horario', None)
+                telefono=request.form['telefono'],
+                horario=request.form['horario']
             )
             db.session.add(doctor)
             db.session.commit()
@@ -88,6 +119,37 @@ def gestion_doctores():
     
     doctores = Doctor.query.order_by(Doctor.nombre).all()
     return render_template('doctores.html', doctores=doctores)
+
+@app.route('/doctores/eliminar/<int:id_doctor>', methods=['POST'])
+def eliminar_doctor(id_doctor):
+    
+    doctor = Doctor.query.get_or_404(id_doctor)
+    
+    try:
+        
+        db.session.delete(doctor)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {str(e)}")
+    
+    return redirect(url_for('gestion_doctores'))
+
+@app.route('/doctores/editar/<int:id_doctor>', methods=['GET', 'POST'])
+def editar_doctor(id_doctor):
+    doctor = Doctor.query.get_or_404(id_doctor)  
+    
+    if request.method == 'POST':
+        
+        doctor.nombre = request.form['nombre']
+        doctor.especialidad = request.form['especialidad']
+        doctor.telefono = request.form['telefono']
+        doctor.horario = request.form['horario']
+        db.session.commit()  
+        return redirect(url_for('gestion_doctores'))  
+    
+    
+    return render_template('editar_doctor.html', doctor=doctor)
 
 @app.route('/citas', methods=['GET', 'POST'])
 def gestion_citas():

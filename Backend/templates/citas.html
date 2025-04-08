@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='citas.css') }}">
 </head>
 <body>
+    
     <div class="container">
+        <a href="{{ url_for('index') }}">inicio</a>
         <form method="POST" class="form-citas">
             <select name="paciente_id" required>
                 {% for paciente in pacientes %}

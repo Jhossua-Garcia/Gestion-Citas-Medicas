@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h2><i class="fas fa-user-injured"></i> Registro de Pacientes</h2>
-
+        <a href="{{ url_for('index') }}">inicio</a>
         <!-- Formulario -->
         <div class="form-container">
             <h3><i class="fas fa-user-plus"></i> Nuevo Paciente</h3>
@@ -73,6 +73,13 @@
                         {% else %}
                             <span class="empty-data">Sin dirección</span>
                         {% endif %}
+                    </td>
+                    <td>
+                        <form action="{{ url_for('eliminar_paciente', id_paciente=paciente.id_paciente) }}" method="POST" style="display: inline;">
+                            <button type="submit">Eliminar</button>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('editar_paciente', id_paciente=paciente.id_paciente) }}">Editar</a>
                     </td>
                 </tr>
                 {% endfor %}

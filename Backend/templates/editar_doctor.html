@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gestión de Doctores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doctores.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2><i class="fas fa-user-injured"></i> Editar Doctores</h2>
+        
+ <div class="form-container">
+  <form method="POST">
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" value="{{ doctor.nombre }}" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="especialidad">Especialidad:</label>
+    <input type="text" id="especialidad" name="especialidad" value="{{ doctor.especialidad }}" required>
+  </div>
+
+  <div class="form-group">  
+    <label for="telefono">Telefono:</label>
+    <input type="text" id="telefono" name="telefono" value="{{ doctor.telefono }}" required>
+  </div>
+    
+  <div class="form-group">  
+    <label for="horario">Horario:</label>
+    <input type="text" id="horario" name="horario" value="{{ doctor.horario }}" required>
+  </div>
+    <button type="submit">Guardar Cambios</button>
+    <a href="{{ url_for('gestion_doctores') }}">Cancelar</a>
+  </form>
+ </div>
+</body>
+
+</html>
